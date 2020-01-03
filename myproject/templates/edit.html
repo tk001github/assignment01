@@ -1,0 +1,18 @@
+<!DOCTYPE html5>
+<html>
+    <head>
+        <title>task1</title>
+        <script></script>
+    </head>
+
+    <body>
+            <h3>Edit file</h3>
+            <form action="upload" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p}} 
+                <input type="text" name="id" value='{{ id }}' hidden/>
+                <input type="submit" value="update">
+            </form>
+
+    </body>
+</html>

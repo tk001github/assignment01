@@ -1,0 +1,41 @@
+<!DOCTYPE html5>
+<html>
+    <head>
+        <title>task1</title>
+        <script></script>
+    </head>
+
+    <body>
+        {% if change %}
+            <script>
+                alert("Some changes in data occured. Check the terminal for details " );
+            </script>
+        {% endif %}
+       
+        <div style="margin: 5%;">
+    
+            {% if existing_data %}  
+                <h2>Edit existing files</h2>
+                {% for data in existing_data %}
+                    <div id = '{{ data.id }}' >
+                    <form action="edit" method="POST">
+                        file_id: {{ data.id }} &nbsp;&nbsp;&nbsp;&nbsp;
+                        charfield: {{ data.charfield }}&nbsp;&nbsp;&nbsp;
+                        filefield: {{ data.filefield }}&nbsp;
+                        {% csrf_token %}
+                        <input type='text' name="id" value="{{ data.id }}" hidden>
+                        <input type="submit" value="edit"/>  
+                    </form>
+                    </div>
+                {% endfor %}    
+            {% endif %}
+        
+            <h3>Upload  a new file</h3>
+            <form action="upload" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="upload">
+            </form>
+        </div>
+    </body>
+</html>
